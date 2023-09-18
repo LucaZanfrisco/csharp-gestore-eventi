@@ -108,7 +108,8 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine(ex.Message.ToUpper());
+                    Console.WriteLine("IMPOSSIBILE SALVARE");
+                    Console.WriteLine($"ERRORE: {ex.Message.ToUpper()}");
                 }
             }
             break; 
@@ -145,8 +146,7 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
         case 5:
             try
             {
-                Console.WriteLine("\nAggiungiamo anche una conferenza!");
-                Console.Write("Inserisci il nome della conferenza: ");
+                Console.Write("\nInserisci il nome della conferenza: ");
                 string nomeConferenza = Console.ReadLine();
 
                 Console.Write("Inserisci data della conferenza (gg/mm/yyyy): ");
@@ -167,7 +167,8 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
 
             }catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("IMPOSSIBILE SALVARE");
+                Console.WriteLine($"ERRORE: {ex.Message.ToUpper()}");
             }
             
             break;
