@@ -91,4 +91,3 @@ programma.StampaProgramma(eventoPerData);
 
 programma.SvuotaListaEventi();
 
-

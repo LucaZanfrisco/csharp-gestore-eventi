@@ -29,7 +29,6 @@ namespace csharp_gestore_eventi
             if(string.IsNullOrEmpty(titolo))
             {
                 throw new Exception("Il titolo dell'evento non puo essere vuoto");
-                return;
             }
             this.titolo = titolo;
         }
@@ -42,8 +41,7 @@ namespace csharp_gestore_eventi
 
             if(dataInserita < DateTime.Today)
             {
-                throw new Exception("La data inserita è minore della data odierna");
-                return;
+                throw new Exception("La data inserita è passata");
             }
 
             this.data = dataInserita;
@@ -53,7 +51,6 @@ namespace csharp_gestore_eventi
             if(capienza < 0)
             {
                 throw new Exception("La capienza di un evento non puo essere minore di 0");
-                return;
             }
             this.capienzaMassima = capienza;
         }
@@ -82,17 +79,14 @@ namespace csharp_gestore_eventi
             if(posti < 0)
             {
                 throw new Exception("Non è possibile prenotare un numero di posti negativo");
-                return;
             }
             if(DateTime.Today > this.data)
             {
                 throw new Exception("L'evento è gia passato, non si possono prentore posti");
-                return;
             }
             if(this.postiPrenotati + posti >= this.capienzaMassima)
             {
                 throw new Exception("Il numero di posti disponibili non sufficienti");
-                return;
             }
             this.postiPrenotati += posti;
         }
@@ -102,17 +96,14 @@ namespace csharp_gestore_eventi
             if(posti < 0)
             {
                 throw new Exception("Non è possibile disdire un numero di posti negativo");
-                return;
             }
             if(DateTime.Today > this.data)
             {
                 throw new Exception("L'evento è gia passato, non si possono disdire posti");
-                return;
             }
             if(this.postiPrenotati == 0 || this.postiPrenotati - posti <= 0)
             {
                 throw new Exception("Numero di posti disdetti maggiore dei posti prenotati");
-                return;
             }
             this.postiPrenotati -= posti;
         }

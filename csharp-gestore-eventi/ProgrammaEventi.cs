@@ -40,7 +40,7 @@ namespace csharp_gestore_eventi
         {
             foreach(Evento evento in eventi)
             {
-                Console.WriteLine($"{evento.GetData().ToString()} - {evento.GetTitolo()} - {evento.GetPostiPrenotati()} - {evento.GetCapienzaMassima()}");
+                Console.WriteLine($"{evento.ToString()} - {evento.GetPostiPrenotati()}");
             }
         }
 
