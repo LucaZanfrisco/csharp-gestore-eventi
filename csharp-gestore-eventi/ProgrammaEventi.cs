@@ -10,7 +10,7 @@ namespace csharp_gestore_eventi
     public class ProgrammaEventi
     {
         private string titolo;
-        private List<Evento> eventi;
+        public List<Evento> eventi;
 
         public ProgrammaEventi(string titolo)
         {
