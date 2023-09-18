@@ -54,7 +54,7 @@ namespace csharp_gestore_eventi
             eventi.Clear();
         }
 
-        public void StampaProgramma()
+        public void StampaProgramma(List<Evento> eventi)
         {
             Console.WriteLine($"Nome programma evento: {this.titolo}");
             foreach(Evento evento in eventi)

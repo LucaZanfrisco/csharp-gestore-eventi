@@ -47,8 +47,6 @@ using csharp_gestore_eventi;
 Console.Write("Inserisci il nome del tuo programma Eventi: ");
 string titoloProgramma = Console.ReadLine();
 
-Console.WriteLine();
-
 Console.Write("Indica il numero di eventi da inserire: ");
 int numeroEventi = int.Parse(Console.ReadLine());
 
@@ -56,17 +54,16 @@ ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
 
 while(programma.eventi.Count < numeroEventi)
 {
+    Console.WriteLine();
+    Console.WriteLine($"{programma.eventi.Count + 1}° Evento");
     Console.Write("Inserisci il nome del'evento: ");
     string titoloEvento = Console.ReadLine();
-    Console.WriteLine();
 
     Console.Write("Inserisci data dell'evento (gg/mm/yyyy): ");
     string dataEvento = Console.ReadLine();
-    Console.WriteLine();
 
     Console.Write("Inserisci il numero di posti totali: ");
     int capienzaMassima = int.Parse(Console.ReadLine());
-    Console.WriteLine();
 
     try
     {
@@ -78,8 +75,19 @@ while(programma.eventi.Count < numeroEventi)
     }
 }
 
+Console.Write($"Il numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
+Console.WriteLine();
+programma.StampaProgramma(programma.eventi);
 
+Console.WriteLine();
 
+Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
+DateTime cercaData = DateTime.Parse(Console.ReadLine());
 
+List<Evento> eventoPerData = programma.ListaEventiData(cercaData);
+
+programma.StampaProgramma(eventoPerData);
+
+programma.SvuotaListaEventi();
 
 
