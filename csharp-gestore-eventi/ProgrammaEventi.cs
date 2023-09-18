@@ -40,7 +40,7 @@ namespace csharp_gestore_eventi
         {
             foreach(Evento evento in eventi)
             {
-                Console.WriteLine($"{evento.ToString()} - {evento.GetPostiPrenotati()}");
+                Console.WriteLine($"\t{evento.ToString()}");
             }
         }
 
@@ -56,11 +56,8 @@ namespace csharp_gestore_eventi
 
         public void StampaProgramma(List<Evento> eventi)
         {
-            Console.WriteLine($"Nome programma evento: {this.titolo}");
-            foreach(Evento evento in eventi)
-            {
-                Console.WriteLine($"{evento.ToString()} ");
-            }
+            Console.WriteLine($"\n{this.titolo}");
+            StampaListaEventi(eventi);
         }
     }
 }

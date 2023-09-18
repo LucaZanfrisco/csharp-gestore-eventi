@@ -56,8 +56,7 @@ while(programma.eventi.Count < numeroEventi)
 {
     try
     {
-        Console.WriteLine();
-        Console.WriteLine($"{programma.eventi.Count + 1}° Evento");
+        Console.WriteLine($"\n{programma.eventi.Count + 1}° Evento");
         Console.Write("Inserisci il nome del'evento: ");
         string titoloEvento = Console.ReadLine();
 
@@ -76,18 +75,49 @@ while(programma.eventi.Count < numeroEventi)
     }
 }
 
-Console.Write($"Il numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
-Console.WriteLine();
+
+Console.Write($"\nIl numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
+
 programma.StampaProgramma(programma.eventi);
 
-Console.WriteLine();
-
-Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
+Console.Write("\nInserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
 DateTime cercaData = DateTime.Parse(Console.ReadLine());
 
 List<Evento> eventoPerData = programma.ListaEventiData(cercaData);
 
-programma.StampaProgramma(eventoPerData);
+if(eventoPerData.Count > 0)
+{
+    programma.StampaProgramma(eventoPerData);
+}
+else
+{
+    Console.WriteLine($"Nessun evento in programma per il giorno {cercaData}");
+}
 
-programma.SvuotaListaEventi();
+
+Console.WriteLine("Aggiungiamo anche una conferenza!");
+Console.Write("Inserisci il nome della conferenza: ");
+string nomeConferenza = Console.ReadLine();
+
+Console.Write("Inserisci data della conferenza: ");
+string dataConferenza = Console.ReadLine();
+
+Console.Write("Inserisci il numero di posti per la conferenza: ");
+int numeroPostiConferenza = int.Parse(Console.ReadLine());
+
+Console.Write("Inserisci il relatore della conferenza: ");
+string relatoreConferenza = Console.ReadLine();
+
+Console.Write("Inserisci il prezzo del biglietto della conferenza: ");
+double prezzoBiglietto = double.Parse(Console.ReadLine());
+
+Conferenza conferenza = new Conferenza(relatoreConferenza, prezzoBiglietto,nomeConferenza,dataConferenza,numeroPostiConferenza);
+
+programma.eventi.Add(conferenza);
+
+programma.StampaProgramma(programma.eventi);
+
+
+
+//programma.SvuotaListaEventi();
 
