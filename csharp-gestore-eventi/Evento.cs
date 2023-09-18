@@ -110,7 +110,7 @@ namespace csharp_gestore_eventi
 
         public override string ToString()
         {
-            return $"{this.data.ToString("dd/MM/yyyy")} - {this.titolo}";
+            return $"Data: {this.data.ToString("dd/MM/yyyy")} - Titolo: {this.titolo} - Prenotazioni: {this.GetPostiPrenotati()}";
         }
     }
 }

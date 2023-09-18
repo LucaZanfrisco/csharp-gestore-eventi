@@ -141,7 +141,7 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
 
             break;
         case 4:
-            Console.Write($"\nIl numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
+            Console.WriteLine($"\nIl numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
             break;
         case 5:
             try
