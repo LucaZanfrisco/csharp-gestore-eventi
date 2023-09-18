@@ -35,10 +35,7 @@ namespace csharp_gestore_eventi
         }
         public void SetDate(string data)
         {
-            if(DateTime.TryParse(data, out DateTime dataInserita)){
-                throw new Exception("Il formato della data non è valido");
-                return;
-            }
+            DateTime dataInserita = DateTime.Parse(data);
             if(dataInserita < DateTime.Today)
             {
                 throw new Exception("La data inserita è minore della data odierna");
@@ -88,9 +85,9 @@ namespace csharp_gestore_eventi
                 throw new Exception("L'evento è gia passato, non si possono prentore posti");
                 return;
             }
-            if(capienzaMassima - posti <= 0)
+            if(this.postiPrenotati + posti >= this.capienzaMassima)
             {
-                throw new Exception("Il numero di posti disponibili non basta");
+                throw new Exception("Il numero di posti disponibili non sufficienti");
                 return;
             }
             this.postiPrenotati += posti;
@@ -106,6 +103,11 @@ namespace csharp_gestore_eventi
             if(DateTime.Today > this.data)
             {
                 throw new Exception("L'evento è gia passato, non si possono disdire posti");
+                return;
+            }
+            if(this.postiPrenotati == 0 || this.postiPrenotati - posti <= 0)
+            {
+                throw new Exception("Numero di posti disdetti maggiore dei posti prenotati");
                 return;
             }
             this.postiPrenotati -= posti;
