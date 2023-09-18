@@ -55,8 +55,8 @@ Scrivere un numero per svolgere una azione: ");
                 numeroEventi = int.Parse(Console.ReadLine());
 
             } while(numeroEventi <= 0);
-
-            while(programma.eventi.Count < numeroEventi)
+            int i = 0;
+            while(i < numeroEventi)
             {
                 try
                 {
@@ -111,6 +111,7 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
                    
 
                     programma.eventi.Add(evento);
+                    i++;
                 }
                 catch(Exception ex)
                 {
