@@ -19,22 +19,27 @@ int postiDaPrenotare = int.Parse(Console.ReadLine());
 
 evento.PostiPrenotati(postiDaPrenotare);
 
-Console.WriteLine($"\nNumero di posti prenotati = {evento.GetPostiPrenotati()}");
-Console.WriteLine($"\nNumero di posti disponibili = {evento.GetCapienzaMassima() - evento.GetPostiPrenotati()}");
+bool controlloDisdetta = false;
 
-
-string disdire = "";
-
-while(disdire.ToLower() != "no")
+while(!controlloDisdetta)
 {
+
+    Console.WriteLine($"Numero di posti prenotati = {evento.GetPostiPrenotati()}");
+    Console.WriteLine($"Numero di posti disponibili = {evento.GetCapienzaMassima() - evento.GetPostiPrenotati()}");
+
+    Console.WriteLine();
+
     Console.Write("Desidera disdire dei posti? ");
-    disdire = Console.ReadLine();
+    string disdire = Console.ReadLine();
+
+    if(disdire.ToLower() == "no")
+    {
+        break;
+    }
 
     Console.Write("Quanti posti si desidera disdire: ");
     int postiDisdetti = int.Parse(Console.ReadLine());
     evento.DisdiciPosti(postiDisdetti);
-    Console.WriteLine($"Numero di posti prenotati = {evento.GetPostiPrenotati()}");
-    Console.WriteLine($"Numero di posti disponibili = {evento.GetCapienzaMassima() - evento.GetPostiPrenotati()}");
 }
 
 Console.WriteLine($"Numero di posti prenotati = {evento.GetPostiPrenotati()}");
