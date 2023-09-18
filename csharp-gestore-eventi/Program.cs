@@ -44,11 +44,27 @@ using csharp_gestore_eventi;
 //Console.WriteLine($"Numero di posti prenotati = {evento.GetPostiPrenotati()}");
 //Console.WriteLine($"Numero di posti disponibili = {evento.GetCapienzaMassima() - evento.GetPostiPrenotati()}");
 
-Console.Write("Inserisci il nome del tuo programma Eventi: ");
+
+
+Console.WriteLine("Benvenuto nel programma per la gestione di Eventi");
+
+Console.Write("\nInserisci il nome del tuo programma Eventi: ");
 string titoloProgramma = Console.ReadLine();
 
-Console.Write("Indica il numero di eventi da inserire: ");
-int numeroEventi = int.Parse(Console.ReadLine());
+
+while(string.IsNullOrEmpty(titoloProgramma))
+{
+    Console.Write("Inserire un titolo del programma: ");
+    titoloProgramma = Console.ReadLine();
+}
+
+int numeroEventi = 0;
+do
+{
+    Console.Write("Indica il numero di eventi da inserire: ");
+    numeroEventi = int.Parse(Console.ReadLine());
+} while(numeroEventi <= 0);
+
 
 ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
 
@@ -75,27 +91,27 @@ while(programma.eventi.Count < numeroEventi)
     }
 }
 
-
 Console.Write($"\nIl numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
-
+Console.WriteLine();
 programma.StampaProgramma(programma.eventi);
+
+Console.WriteLine();
 
 Console.Write("\nInserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
 DateTime cercaData = DateTime.Parse(Console.ReadLine());
 
 List<Evento> eventoPerData = programma.ListaEventiData(cercaData);
-
 if(eventoPerData.Count > 0)
 {
     programma.StampaProgramma(eventoPerData);
 }
 else
 {
-    Console.WriteLine($"Nessun evento in programma per il giorno {cercaData}");
+    Console.WriteLine($"\nNon ci sono eventi in programma per la data {cercaData}");
 }
 
 
-Console.WriteLine("Aggiungiamo anche una conferenza!");
+Console.WriteLine("\nAggiungiamo anche una conferenza!");
 Console.Write("Inserisci il nome della conferenza: ");
 string nomeConferenza = Console.ReadLine();
 
