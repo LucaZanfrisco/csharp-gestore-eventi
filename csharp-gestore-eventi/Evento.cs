@@ -35,7 +35,11 @@ namespace csharp_gestore_eventi
         }
         public void SetDate(string data)
         {
-            DateTime dataInserita = DateTime.Parse(data);
+            if(!DateTime.TryParse(data, out DateTime dataInserita)) 
+            {
+                throw new Exception("Il formato della data non è valido");
+            }
+
             if(dataInserita < DateTime.Today)
             {
                 throw new Exception("La data inserita è minore della data odierna");

@@ -54,24 +54,25 @@ ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
 
 while(programma.eventi.Count < numeroEventi)
 {
-    Console.WriteLine();
-    Console.WriteLine($"{programma.eventi.Count + 1}° Evento");
-    Console.Write("Inserisci il nome del'evento: ");
-    string titoloEvento = Console.ReadLine();
-
-    Console.Write("Inserisci data dell'evento (gg/mm/yyyy): ");
-    string dataEvento = Console.ReadLine();
-
-    Console.Write("Inserisci il numero di posti totali: ");
-    int capienzaMassima = int.Parse(Console.ReadLine());
-
     try
     {
-        Evento evento = new Evento(titoloEvento,dataEvento,capienzaMassima);
+        Console.WriteLine();
+        Console.WriteLine($"{programma.eventi.Count + 1}° Evento");
+        Console.Write("Inserisci il nome del'evento: ");
+        string titoloEvento = Console.ReadLine();
+
+        Console.Write("Inserisci data dell'evento (gg/mm/yyyy): ");
+        string dataEvento = Console.ReadLine();
+
+        Console.Write("Inserisci il numero di posti totali: ");
+        int capienzaMassima = int.Parse(Console.ReadLine());
+
+        Evento evento = new Evento(titoloEvento, dataEvento, capienzaMassima);
         programma.eventi.Add(evento);
-    }catch(Exception ex)
+    }
+    catch(Exception ex)
     {
-        Console.WriteLine(ex.Message);
+        Console.WriteLine(ex.Message.ToUpper());
     }
 }
 
