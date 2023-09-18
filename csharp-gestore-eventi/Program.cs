@@ -2,24 +2,30 @@
 
 using csharp_gestore_eventi;
 
-
-ProgrammaEventi programma = null;
-
 Console.WriteLine("Benvenuto nel programma per la gestione di Eventi");
+
+Console.Write("\nInserisci il nome del tuo programma Eventi: ");
+string titoloProgramma = Console.ReadLine();
+
+while(string.IsNullOrEmpty(titoloProgramma))
+{
+    Console.Write("Inserire un titolo del programma: ");
+    titoloProgramma = Console.ReadLine();
+}
+ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
 
 bool scelta = false;
 while(!scelta)
 {
     Console.Write(@"
 Azioni:
-1 - Creare un programma
-2 - Aggiungere un evento ad un programma
-3 - Stampare la lista degli eventi
-4 - Cercare gli eventi per data
-5 - Mostare il numero di eventi in programma
-6 - Aggiungere una conferenza
-7 - Svuota lista eventi
-8 - Esci
+1 - Aggiungere un evento ad un programma
+2 - Stampare la lista degli eventi
+3 - Cercare gli eventi per data
+4 - Mostare il numero di eventi in programma
+5 - Aggiungere una conferenza
+6 - Svuota lista eventi
+7 - Esci
 Scrivere un numero per svolgere una azione: ");
     int azioneScelta = 0;
     try
@@ -34,21 +40,8 @@ Scrivere un numero per svolgere una azione: ");
     switch(azioneScelta) 
     {
         case 1:
-            Console.Write("\nInserisci il nome del tuo programma Eventi: ");
-            string titoloProgramma = Console.ReadLine();
 
-
-            while(string.IsNullOrEmpty(titoloProgramma))
-            {
-                Console.Write("Inserire un titolo del programma: ");
-                titoloProgramma = Console.ReadLine();
-            }
-            programma = new ProgrammaEventi(titoloProgramma);
-            break;
-
-        case 2:
-
-            int numeroEventi = 0;
+            int numeroEventi;
             do
             {
                 Console.Write("\nIndica il numero di eventi da inserire: ");
@@ -119,7 +112,7 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
                 }
             }
             break; 
-        case 3:
+        case 2:
             if(programma.eventi.Count > 0)
             {
                 programma.StampaProgramma(programma.eventi);
@@ -130,7 +123,7 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
             }
             
             break;
-        case 4:
+        case 3:
             Console.Write("\nInserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
             DateTime cercaData = DateTime.Parse(Console.ReadLine());
 
@@ -146,17 +139,17 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
             }
 
             break;
-        case 5:
+        case 4:
             Console.Write($"\nIl numero di eventi presenti in programma è: {programma.NumeroEventiInProgramma()}");
             break;
-        case 6:
+        case 5:
             try
             {
                 Console.WriteLine("\nAggiungiamo anche una conferenza!");
                 Console.Write("Inserisci il nome della conferenza: ");
                 string nomeConferenza = Console.ReadLine();
 
-                Console.Write("Inserisci data della conferenza: ");
+                Console.Write("Inserisci data della conferenza (gg/mm/yyyy): ");
                 string dataConferenza = Console.ReadLine();
 
                 Console.Write("Inserisci il numero di posti per la conferenza: ");
@@ -171,16 +164,17 @@ Inserire il numero per svolgere una delle seguenti azioni: ");
                 Conferenza conferenza = new Conferenza(relatoreConferenza, prezzoBiglietto, nomeConferenza, dataConferenza, numeroPostiConferenza);
 
                 programma.eventi.Add(conferenza);
+
             }catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
             
             break;
-        case 7:
+        case 6:
             programma.SvuotaListaEventi();
             break;
-        case 8:
+        case 7:
             scelta = true;
             break;
         default:
