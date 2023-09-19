@@ -59,7 +59,7 @@ namespace csharp_gestore_eventi
 
         public override string ToString()
         {
-            return $"Data: {DataFormattata()} - Titolo: {this.GetTitolo()} - Relatore: {this.GetRelatore()} - Prezzo:{PrezzoFormattato()} euro";
+            return $"Data: {DataFormattata()} - Titoli: {this.GetTitolo()} - Relatore: {this.GetRelatore()} - Prezzo:{PrezzoFormattato()} euro";
         }
     }
 }
